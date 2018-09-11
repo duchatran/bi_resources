@@ -66,16 +66,7 @@
                 "s3:ReplicateDelete",
                 "s3:GetObjectVersion"
             ],
-            "Resource": [
-                "arn:aws:s3:::sumologic-bi/*",
-                "arn:aws:s3:::sumologic-bi-dev/*",
-                "arn:aws:s3:::sumologic-firehose/*",
-                "arn:aws:s3:::bi-users-table/*",
-                "arn:aws:s3:::sumologic-bi",
-                "arn:aws:s3:::sumologic-bi-dev",
-                "arn:aws:s3:::sumologic-firehose",
-                "arn:aws:s3:::bi-users-table"
-            ]
+            "Resource": "*"
         }
     ]
 }
