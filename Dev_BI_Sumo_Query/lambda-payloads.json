@@ -1,7 +1,7 @@
 {
   "name": "sample_query",
   "creds": "KMS ENCRYPTED_STRING_OF_COMMA_SEPARATED_FIELDS: SUMO_ACCESS_ID,SUMO_ACCESS_KEY,SUMO_DEPLOYMENT FOR_YOUR_SUMO_ACCOUNT",
-  "query": "_index=forge (sourceName or sourceCategory) *docker*  !0000000000131661 | parse \"customer: '*'\" as orgid nodrop | parse regex \"\\{\\\"_sourceName\\\":(?<jsonmap1>.+)\\}$\" nodrop  | parse regex \"\\{\\\"_sourceCategory\\\":(?<jsonmap2>.+)\\}$\" nodrop | where (jsonMap1!=\"\" or jsonmap2!=\"\") | if (jsonMap1 =\"\", jsonmap2, jsonmap1) as jsonMap| parse regex field=jsonmap \"\\\"(?<data>[^\\\"]*docker[^\\\"]*)\\\":\\{\" multi | where data matches \"*docker*\" | \"docker\" as technology | count as count by technology , deployment, orgid, data | \"logpath\" as data_source | lookup org_name, type as org_type from shared/lookups/master_orgs on orgid=org_id, deployment=deployment",
+  "query": "_index=sumologic_volume sizeInBytes | where _sourceCategory=\"collector_volume\" | parse regex \"\\\"(?<collector>[^\\\"]+)\\\"\\:\\{\\\"sizeInBytes\\\"\\:(?<bytes>\\d+),\\\"count\\\"\\:(?<count>\\d+)\\}\" multi | bytes/1024/1024/1024 as gbytes | sum(gbytes) as gbytes by collector",
   "from": "2018-04-21T00:00:00",
   "to": "2018-04-22T00:00:00",
   "subquery_count": 1,

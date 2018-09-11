@@ -1,0 +1,15 @@
+{"queries":[
+  {
+  "name": "sample_query",
+  "creds": "KMS ENCRYPTED_STRING_OF_COMMA_SEPARATED_FIELDS: SUMO_ACCESS_ID,SUMO_ACCESS_KEY,SUMO_DEPLOYMENT FOR_YOUR_SUMO_ACCOUNT",
+  "query": "_index=sumologic_volume sizeInBytes | where _sourceCategory=\"collector_volume\" | parse regex \"\\\"(?<collector>[^\\\"]+)\\\"\\:\\{\\\"sizeInBytes\\\"\\:(?<bytes>\\d+),\\\"count\\\"\\:(?<count>\\d+)\\}\" multi | bytes/1024/1024/1024 as gbytes | sum(gbytes) as gbytes by collector",
+  "streams": "target_firehose_1,target_firehose_2"
+  }
+],
+"others1":[
+{
+  "name":"BI_SampleNonSumoQuery",
+  "description":"This is an example of another function called by the orchestrator. By default, the orchestrator function will invoke all functions under the section 'others' in the config file. To enable this, first create a function with the name BI_SampleNonSumoQuery, and rename the section 'others1' to 'others'",
+  "type": "check_aws_ips"
+}
+]}

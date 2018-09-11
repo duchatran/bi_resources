@@ -8,5 +8,5 @@
 >
 + Sample Test Payload: lambda-payloads.json 
 + Trigger: No 
-NOTE: To create an encrypted value for the cred field in the payload, you can create an Environment Variable with plain value of the format: SumoAccessID,SumoAccessKey,Deployment then encrypt in transit (see more at https://docs.aws.amazon.com/lambda/latest/dg/tutorial-env_console.html) 
+NOTE: To create an encrypted value for the cred field in the lambda-payload.json, you can create an Environment Variable with plain value of the format: SumoAccessID,SumoAccessKey,Deployment then encrypt in transit (see more at https://docs.aws.amazon.com/lambda/latest/dg/tutorial-env_console.html) 
 
