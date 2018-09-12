@@ -5,11 +5,12 @@ FROM amazonlinux
 WORKDIR /app
 
 # Copy needed files into the container at /app
-ADD glass_blade_dashboard_collector_local.py /app/.
-ADD glass_processor_local.py /app/.
 ADD lambda_simulator.py /app/.
+ADD orchestrator.py /app/.
+ADD orchestrator_wrapper.py /app/.
 ADD stash.py /app/.
-ADD queue_utils.py /app/.
+ADD sumo.py /app/.
+ADD sumo_query_function.py /app/.
 ADD requirements.txt /app/.
 
 
